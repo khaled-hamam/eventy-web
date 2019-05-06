@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-
+import { NavBar } from './components/navbar';
 export default class LandingPage extends Component {
   render() {
-    return <h1>Hello from Landing Page</h1>;
+    return <NavBar />;
   }
 }
