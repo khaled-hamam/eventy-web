@@ -8,7 +8,9 @@ const App: React.FC = () => {
   return (
     <React.Fragment>
       <Router>
-        <Route path="/" exact component={RegistrationPage} />
+        <Route path="/" exact component={LoginPage} />
+        <Route path="/register" exact component={RegistrationPage} />
+        <Route path="/landingPage" exact component={LandingPage} />
       </Router>
     </React.Fragment>
   );

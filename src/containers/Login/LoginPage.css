@@ -1,5 +1,21 @@
+.background {
+  background-image: url(/vendors/images/concert3.jpg);
+  height: 100vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+html,
+body {
+  overflow: hidden;
+}
 .login-form {
-  max-width: 300px;
+  max-width: 400px;
+  min-width: 350px;
+  border-color: #ff4d4f;
+  border-style: double;
+  padding: 50px 20px 50px 20px;
 }
 
 .login-form-forgot {
@@ -8,8 +24,17 @@
 
 .login-form-button {
   width: 100%;
+  border: none;
+  background-color: #ff4d4f;
+  color: white;
+  font-family: sans-serif;
 }
-
+.login-form-button:hover {
+  background-color: #ff4d4f;
+  color: white;
+}
 .login-form-register {
   width: 100%;
+  justify-content: center;
+  align-items: center;
 }
