@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
 import { Button } from 'antd';
-
+import './Navbar.css';
 export class NavBar extends Component {
   render() {
     return (
-      <nav className="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
-        <a> Eventy</a>
-        <div className="d-flex flex-row-reverse">
-          <Button type="link">LOGIN</Button>
-          <Button type="danger">REGISTER</Button>
+      <nav className="d-flex align-items-center py-2 px-4">
+        <h3 className="logo flex-grow-1">Eventy</h3>
+        <div className="">
+          <Button className="mr-2 login" type="link">
+            LOGIN
+          </Button>
+          <Button className="register" type="primary">
+            REGISTER
+          </Button>
         </div>
       </nav>
     );
