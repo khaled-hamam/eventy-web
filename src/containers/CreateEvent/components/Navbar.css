@@ -1,17 +1,16 @@
 .logo {
   font-family: 'Pacifico', sans-serif;
 }
-.login {
-  color: black;
-}
-.register {
+
+.profile {
   background-color: #ff4d4f;
+  color: white;
   border: none;
 }
-.register:hover {
+.profile:hover {
   background-color: white;
   color: #ff4d4f;
 }
-.login:hover {
-  color: #ff4d4f;
+.backgroudNav {
+  background-color: transparent;
 }

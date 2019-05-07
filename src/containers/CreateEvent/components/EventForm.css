@@ -1,0 +1,21 @@
+.ant-form-item-control {
+  position: relative;
+  line-height: 0px;
+  zoom: 1;
+}
+.submit {
+  background-color: #ff4d4f;
+  color: white;
+  border: none;
+}
+.submit:hover {
+  background-color: white;
+  color: #ff4d4f;
+  border: none;
+}
+.form-style {
+  border-color: #ff4d4f;
+  border-width: 10px;
+  border-radius: 5px;
+  padding: 3%;
+}
