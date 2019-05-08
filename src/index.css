@@ -12,3 +12,19 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
+
+#root {
+  height: 100%;
+}
+
+.flex-basis-20 {
+  flex-basis: 20%;
+}
+
+.flex-basis-80 {
+  flex-basis: 80%;
+}
+
+.lh-0 {
+  line-height: 0pt;
+}
