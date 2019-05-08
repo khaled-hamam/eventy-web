@@ -1,31 +1,62 @@
 import React, { Component } from 'react';
 import { Button, Form, Input, DatePicker, Checkbox, InputNumber } from 'antd';
 import './EventForm.css';
-export class EventForm extends Component {
+import CreateEvent from '../CreateEvent';
+import { EventService } from '../../../Services/eventServices/event.service';
+interface ICreateEventProps {
+  form?: any;
+  onSubmit: (formData: any) => void;
+}
+export class EventForm extends Component<ICreateEventProps, {}> {
+  eventService = new EventService();
+  submitCreate = (e: any) => {
+    e.preventDefault();
+    const formData = this.props.form.getFieldsValue();
+    this.eventService.create(formData);
+  };
   render() {
+    const { getFieldDecorator } = this.props.form;
     return (
       <Form className="form-style">
         <Form.Item>
+          {getFieldDecorator('name', {
+            rules: [{ required: true, message: 'Please Enter Event Name' }],
+          })}
           <Input placeholder="Name" />
         </Form.Item>
         <Form.Item>
+          {getFieldDecorator('description', {
+            rules: [{ required: true, message: 'Please Enter Event Description' }],
+          })}
           <Input placeholder="Description" />
         </Form.Item>
 
         <Form.Item>
+          {getFieldDecorator('date', {
+            rules: [{ required: true, message: 'Please Enter Event Date' }],
+          })}
           <DatePicker />
         </Form.Item>
 
         <Form.Item>
+          {getFieldDecorator('location', {
+            rules: [{ required: true, message: 'Please Enter Event Location' }],
+          })}
           <Input placeholder="Location" />
         </Form.Item>
 
         <Form.Item>
+          {getFieldDecorator('type', {
+            rules: [{ required: true, message: 'Please Enter Event Type' }],
+          })}
           <Input placeholder="Type" />
         </Form.Item>
 
         <Form.Item>
           <div className="d-flex justify-content align-items flex-column">
+            {getFieldDecorator('budget', {
+              rules: [{ required: true, message: 'Please Enter Event Budget' }],
+            })}
             <p>Budget</p>
             <InputNumber min={1000} max={10000} defaultValue={1000} />
           </div>
@@ -33,6 +64,9 @@ export class EventForm extends Component {
 
         <Form.Item>
           <div className="d-flex justify-content align-items flex-column">
+            {getFieldDecorator('attendeesLimit', {
+              rules: [{ required: true, message: 'Please Enter Number of Attendees' }],
+            })}
             <p>Number of attendees</p>
             <InputNumber min={1} max={500} defaultValue={1} />
           </div>
@@ -40,18 +74,21 @@ export class EventForm extends Component {
 
         <Form.Item>
           <div className="d-flex justify-content align-items flex-column">
+            {getFieldDecorator('eventOptions', {
+              rules: [{ required: false }],
+            })}
             <p>Event Option</p>
             <div className="d-flex flex-row">
               <Checkbox>DJ</Checkbox>
               <Checkbox>Decoration</Checkbox>
-              <Checkbox>Sound System</Checkbox>
+              <Checkbox>Photographer</Checkbox>
               <Checkbox>Catering</Checkbox>
             </div>
           </div>
         </Form.Item>
 
         <div className="d-flex justify-content-center align-items-center ">
-          <Button className="submit" type="primary">
+          <Button onClick={this.submitCreate} className="submit" type="primary">
             Submit
           </Button>
         </div>
@@ -59,3 +96,6 @@ export class EventForm extends Component {
     );
   }
 }
+export default Form.create({
+  name: 'create-event-form',
+})(EventForm);

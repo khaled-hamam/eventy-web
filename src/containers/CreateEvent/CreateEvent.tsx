@@ -2,7 +2,11 @@ import React, { Component } from 'react';
 import { EventForm } from './components/EventForm';
 import './CreateEvent.css';
 import { Navbar } from './components/Navbar';
-export default class CreateEvent extends Component {
+
+interface ICreateEventProps {}
+
+interface ICreateEventState {}
+export default class CreateEvent extends Component<ICreateEventProps, ICreateEventState> {
   render() {
     return (
       <div className="backgroundColor">
