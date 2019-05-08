@@ -1,4 +1,4 @@
 export class LoginDTO {
-  public email: string | undefined;
-  public password: string | undefined;
+  public email: string;
+  public password: string;
 }

@@ -6,7 +6,6 @@ import { ProfileService } from '../Services/profileServices/profile.service';
 
 interface IEditProfileProps {
   form?: any;
-  onSubmit: (formData: any) => void;
 }
 
 class EditProfileForm extends Component<IEditProfileProps, {}> {

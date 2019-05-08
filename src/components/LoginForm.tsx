@@ -5,7 +5,6 @@ import '../containers/Forms.css';
 
 interface ILoginFormProps {
   form?: any;
-  onSubmit: (formData: any) => void;
 }
 
 class LoginForm extends Component<ILoginFormProps, {}> {
