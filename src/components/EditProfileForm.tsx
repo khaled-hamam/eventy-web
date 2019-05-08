@@ -5,14 +5,12 @@ import '../containers/Forms.css';
 
 interface IEditProfileProps {
   form?: any;
-  onSubmit: (formData: any) => void;
 }
 
 class EditProfileForm extends Component<IEditProfileProps, {}> {
   handleSubmit = (e: any) => {
     e.preventDefault();
     const formData = this.props.form.getFieldsValue();
-    console.log(formData);
   };
 
   render() {
