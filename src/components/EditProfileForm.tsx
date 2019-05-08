@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Form, Input, Button } from 'antd';
 
 import '../containers/Forms.css';
+import { ProfileService } from '../Services/profileServices/profile.service';
 
 interface IEditProfileProps {
   form?: any;
@@ -9,10 +10,11 @@ interface IEditProfileProps {
 }
 
 class EditProfileForm extends Component<IEditProfileProps, {}> {
+  profileService = new ProfileService();
   handleSubmit = (e: any) => {
     e.preventDefault();
     const formData = this.props.form.getFieldsValue();
-    console.log(formData);
+    // FIXME: this.profileService.editProfile(formData);
   };
 
   render() {

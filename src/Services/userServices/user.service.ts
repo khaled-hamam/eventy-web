@@ -4,7 +4,7 @@ import { RegisterDTO } from './dto/registerUser.dto';
 
 export class UserService {
   public async login(loginDTO: LoginDTO) {
-    await axios.post('/users/login', loginDTO);
+    const res = await axios.post('/users/login', loginDTO);
   }
 
   public async register(registerDTO: RegisterDTO) {
