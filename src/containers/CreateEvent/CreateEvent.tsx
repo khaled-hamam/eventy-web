@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import { EventForm } from './components/EventForm';
+import EventForm from './components/EventForm';
 import './CreateEvent.css';
 import { Navbar } from './components/Navbar';
 
-interface ICreateEventProps {}
+interface ICreateEventProps {
+  form: any;
+}
 
 interface ICreateEventState {}
 export default class CreateEvent extends Component<ICreateEventProps, ICreateEventState> {

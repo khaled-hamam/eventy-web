@@ -3,11 +3,10 @@ import { Button, Form, Input, DatePicker, Checkbox, InputNumber } from 'antd';
 import './EventForm.css';
 import CreateEvent from '../CreateEvent';
 import { EventService } from '../../../Services/eventServices/event.service';
-interface ICreateEventProps {
-  form?: any;
-  onSubmit: (formData: any) => void;
+interface ICreateEventFormProps {
+  form: any;
 }
-export class EventForm extends Component<ICreateEventProps, {}> {
+export class CreateEventForm extends Component<ICreateEventFormProps, {}> {
   eventService = new EventService();
   submitCreate = (e: any) => {
     e.preventDefault();
@@ -97,5 +96,5 @@ export class EventForm extends Component<ICreateEventProps, {}> {
   }
 }
 export default Form.create({
-  name: 'create-event-form',
-})(EventForm);
+  name: 'event-form',
+})(CreateEventForm);
