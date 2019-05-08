@@ -9,10 +9,10 @@ export enum EventOptions {
   Catering,
 }
 export class EditEventDTO {
-  public name: string | undefined;
-  public description: string | undefined;
-  public location: ILocation | undefined;
-  public budget: number | undefined;
-  public attendeesLimit: number | undefined;
-  public eventOptions: EventOptions[] | undefined;
+  public name: string;
+  public description: string;
+  public location: ILocation;
+  public budget: number;
+  public attendeesLimit: number;
+  public eventOptions: EventOptions[];
 }
