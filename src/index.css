@@ -1,5 +1,7 @@
 @import '~antd/dist/antd.css';
-
+.logo {
+  font-family: 'Pacifico', sans-serif;
+}
 body {
   margin: 0;
   padding: 0;
@@ -15,4 +17,8 @@ code {
 
 #root {
   height: 100%;
+}
+
+.ant-form-item {
+  margin-bottom: 6pt;
 }
