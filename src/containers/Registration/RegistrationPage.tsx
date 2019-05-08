@@ -12,7 +12,7 @@ interface IRegistrationProps {
 interface IRegistrationState {}
 
 export default class RegistrationPage extends Component<IRegistrationProps, IRegistrationState> {
-  
+
   render() {
     return (
       <div className="d-flex h-100">

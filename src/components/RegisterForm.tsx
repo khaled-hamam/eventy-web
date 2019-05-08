@@ -36,7 +36,7 @@ class RegistrationForm extends Component<IRegistrationFormProps, {}> {
         <h5 className="card-header text-center" style={{ background: ' #ff4d4f' }}>
           <strong style={{ color: 'white' }}>Registration</strong>
         </h5>
-        <Form.Item {...formItemLayout} label="Name">
+        <Form.Item {...formItemLayout} label="fullName">
           {getFieldDecorator('fullName', {
             rules: [
               {
