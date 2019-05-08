@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Input, Radio, Button } from 'antd';
+import { Form, Input, Radio, Button, Icon } from 'antd';
 
 import './RegistrationPage.css';
 interface IRegistrationProps {
@@ -34,6 +34,9 @@ class RegistrationPage extends Component<IRegistrationProps, IRegistrationState>
     return (
       <div className="d-flex justify-content-center align-items-center h-100">
         <Form {...formItemLayout} className="register-form">
+          <div className=" d-flex justify-content-center align-items-center h-100">
+            <Icon type="user" />
+          </div>
           <Form.Item {...formItemLayout} label="Name">
             {getFieldDecorator('fullName', {
               rules: [
