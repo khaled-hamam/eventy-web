@@ -1,27 +1,52 @@
 import React, { Component } from 'react';
 import { Form, Input, Checkbox, DatePicker, InputNumber, Button } from 'antd';
 import './EditForm.css';
-export class EditForm extends Component {
+import { EventService } from '../../../Services/eventServices/event.service';
+import moment from 'moment';
+
+interface IEditEventFormProps {
+  form: any;
+}
+export class EditForm extends Component<IEditEventFormProps, {}> {
+  eventService = new EventService();
+  submitEdit = (e: any) => {
+    e.preventDefault();
+    const formData = this.props.form.getFieldsValue();
+    this.eventService.create(formData);
+  };
   render() {
+    const { getFieldDecorator } = this.props.form;
+    const dateFormat = 'YYYY/MM/DD';
     return (
       <Form className="form-style">
-        <Form.Item>
-          <Input placeholder="Name" />
+        <h5 className="card-header text-center" style={{ background: ' #ff4d4f' }}>
+          <strong style={{ color: 'white' }}>Edit Event</strong>
+        </h5>
+        <Form.Item className="d-flex pt-4">
+          {getFieldDecorator('name', {
+            initialValue: 'Chantal birthday',
+          })(<Input />)}
         </Form.Item>
         <Form.Item>
-          <Input placeholder="Description" />
+          {getFieldDecorator('description', {
+            initialValue: 'My 21st birthday party',
+          })(<Input />)}
         </Form.Item>
 
         <Form.Item>
-          <DatePicker disabled />
+          <DatePicker disabled defaultValue={moment('2015/01/01', dateFormat)} format={dateFormat} />
         </Form.Item>
 
         <Form.Item>
-          <Input placeholder="Location" />
+          {getFieldDecorator('location', {
+            initialValue: 'Cairo, Egypt',
+          })(<Input />)}
         </Form.Item>
 
         <Form.Item>
-          <Input disabled placeholder="Type" />
+          {getFieldDecorator('type', {
+            initialValue: 'Birthday Party',
+          })(<Input disabled />)}
         </Form.Item>
 
         <Form.Item>
@@ -51,7 +76,7 @@ export class EditForm extends Component {
         </Form.Item>
 
         <div className="d-flex justify-content-center align-items-center ">
-          <Button className="submit" type="primary">
+          <Button onClick={this.submitEdit} shape="round" className="form-button" type="primary">
             Submit
           </Button>
         </div>
@@ -59,3 +84,6 @@ export class EditForm extends Component {
     );
   }
 }
+export default Form.create({
+  name: 'edit-event-form',
+})(EditForm);

@@ -20,7 +20,7 @@ export class CreateEventForm extends Component<ICreateEventFormProps, {}> {
         <h5 className="card-header text-center" style={{ background: ' #ff4d4f' }}>
           <strong style={{ color: 'white' }}>Create Event</strong>
         </h5>
-        <Form.Item className="d-flex pt-2">
+        <Form.Item className="d-flex pt-4">
           {getFieldDecorator('name', {
             rules: [{ required: true, message: 'Please Enter Event Name' }],
           })}
