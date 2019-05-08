@@ -9,17 +9,10 @@ interface IRegistrationProps {
   form: any;
 }
 
-interface IRegistrationState {
-  confirmDirty: false;
-}
+interface IRegistrationState {}
 
 export default class RegistrationPage extends Component<IRegistrationProps, IRegistrationState> {
-  userService = new UserService();
-  handleSubmit = (e: any) => {
-    e.preventDefault();
-    const formData = this.props.form.getFieldsValue();
-    this.userService.register(formData);
-  };
+ 
   render() {
     return (
       <div className="d-flex h-100">
