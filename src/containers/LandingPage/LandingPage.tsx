@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
-
+import { NavBar } from './components/Navbar';
+import { LandingBody } from './components/LandingBody';
+import './LandingPage.css';
 export default class LandingPage extends Component {
   render() {
-    return <h1>Hello from Landing Page</h1>;
+    return (
+      <div className="background">
+        <NavBar />
+        <LandingBody />
+      </div>
+    );
   }
 }
