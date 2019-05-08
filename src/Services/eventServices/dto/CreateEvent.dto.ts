@@ -10,12 +10,12 @@ export interface ILocation {
 }
 
 export class CreateEventDTO {
-  public name: string | undefined;
-  public description: string | undefined;
-  public date: Date | undefined;
-  public location: ILocation | undefined;
-  public type: string | undefined;
-  public budget: number | undefined;
-  public attendeesLimit: number | undefined;
-  public eventOptions: EventOptions[] | undefined;
+  public name: string;
+  public description: string;
+  public date: Date;
+  public location: ILocation;
+  public type: string;
+  public budget: number;
+  public attendeesLimit: number;
+  public eventOptions: EventOptions[];
 }
