@@ -1,0 +1,17 @@
+.logo {
+  font-family: 'Pacifico', sans-serif;
+}
+.login {
+  color: black;
+}
+.register {
+  background-color: #ff4d4f;
+  border: none;
+}
+.register:hover {
+  background-color: white; /* Green */
+  color: #ff4d4f;
+}
+.login:hover {
+  color: #ff4d4f;
+}

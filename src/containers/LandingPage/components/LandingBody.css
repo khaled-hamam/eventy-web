@@ -1,0 +1,16 @@
+.slogan {
+  font-family: sans-serif;
+}
+.content {
+  margin-top: 10%;
+}
+
+.create {
+  background-color: #ff4d4f;
+  border: none;
+  color: white;
+}
+.create:hover {
+  background-color: white;
+  color: #ff4d4f;
+}
