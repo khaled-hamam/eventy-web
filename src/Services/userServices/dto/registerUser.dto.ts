@@ -1,11 +1,11 @@
 export class RegisterDTO {
-  public fullName: string | undefined;
+  public fullName: string;
 
-  public email: string | undefined;
-  public username: string | undefined;
+  public email: string;
+  public username: string;
 
-  public password: string | undefined;
+  public password: string;
 
-  public mobile: string | undefined;
-  public role: 'planner' | 'creator' | undefined;
+  public mobile: string;
+  public role: 'planner' | 'creator';
 }
