@@ -1,0 +1,22 @@
+.ant-form-item-control {
+  position: relative;
+  line-height: 0px;
+  zoom: 1;
+}
+.form-style {
+  border-color: #ff4d4f;
+  border-width: 10px;
+  border-radius: 5px;
+  padding: 3%;
+}
+.form-button {
+  border: none;
+  background-color: #ff4d4f;
+  color: white;
+  font-family: sans-serif;
+  min-width: 200px;
+}
+.form-button:hover {
+  background-color: #ff4d4f;
+  color: white;
+}
