@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { Form, Input, Radio, Button, Icon, Checkbox } from 'antd';
+import { Form, Input, Button, Icon, Checkbox } from 'antd';
 import { UserService } from '../Services/userServices/user.service';
-import { forStatement } from '@babel/types';
 import '../containers/Forms.css';
 
 interface ILoginFormProps {
