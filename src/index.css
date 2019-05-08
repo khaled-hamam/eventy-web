@@ -1,5 +1,7 @@
 @import '~antd/dist/antd.css';
-
+.logo {
+  font-family: 'Pacifico', sans-serif;
+}
 body {
   margin: 0;
   padding: 0;
