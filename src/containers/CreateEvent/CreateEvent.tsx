@@ -15,9 +15,6 @@ export default class CreateEvent extends Component<ICreateEventProps, ICreateEve
         <div className="backgroundNav">
           <Navbar />
         </div>
-        <div className="header-position header">
-          <h3>CREATE EVENT</h3>
-        </div>
         <div className="position">
           <EventForm />
         </div>

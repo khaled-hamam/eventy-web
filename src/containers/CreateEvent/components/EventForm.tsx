@@ -17,7 +17,10 @@ export class CreateEventForm extends Component<ICreateEventFormProps, {}> {
     const { getFieldDecorator } = this.props.form;
     return (
       <Form className="form-style">
-        <Form.Item>
+        <h5 className="card-header text-center" style={{ background: ' #ff4d4f' }}>
+          <strong style={{ color: 'white' }}>Create Event</strong>
+        </h5>
+        <Form.Item className="d-flex pt-2">
           {getFieldDecorator('name', {
             rules: [{ required: true, message: 'Please Enter Event Name' }],
           })}
@@ -87,7 +90,7 @@ export class CreateEventForm extends Component<ICreateEventFormProps, {}> {
         </Form.Item>
 
         <div className="d-flex justify-content-center align-items-center ">
-          <Button onClick={this.submitCreate} className="submit" type="primary">
+          <Button onClick={this.submitCreate} shape="round" className="form-button" type="primary">
             Submit
           </Button>
         </div>
