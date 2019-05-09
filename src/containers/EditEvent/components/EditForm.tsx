@@ -12,7 +12,7 @@ export class EditForm extends Component<IEditEventFormProps, {}> {
   submitEdit = (e: any) => {
     e.preventDefault();
     const formData = this.props.form.getFieldsValue();
-    this.eventService.create(formData);
+    this.eventService.update(formData);
   };
   render() {
     const { getFieldDecorator } = this.props.form;
