@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Form, Input, DatePicker, Checkbox, InputNumber } from 'antd';
 import './EventForm.css';
+import moment from 'moment';
 import { EventService } from '../../../services/eventServices/event.service';
 interface ICreateEventFormProps {
   form: any;
@@ -10,6 +11,13 @@ export class CreateEventForm extends Component<ICreateEventFormProps, {}> {
   submitCreate = (e: any) => {
     e.preventDefault();
     const formData = this.props.form.getFieldsValue();
+    formData.date = moment(formData.date).format('YYYY-MM-DDTHH:mm:ssZ');
+    formData.location = {
+      latitude: '1',
+      longitude: '2',
+    };
+    formData['eventOptions'] = [];
+    console.log(formData.eventOptions);
     console.log(formData);
     this.eventService.create(formData);
   };
