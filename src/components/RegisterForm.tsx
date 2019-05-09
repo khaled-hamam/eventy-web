@@ -2,18 +2,22 @@ import React, { Component } from 'react';
 import { Form, Input, Radio, Button, Icon } from 'antd';
 
 import '../containers/Forms.css';
-import { UserService } from '../Services/userServices/user.service';
+import { UserService } from '../services/userServices/user.service';
+import { RouteComponentProps, withRouter } from 'react-router-dom';
 
-interface IRegistrationFormProps {
+interface IRegistrationFormProps extends RouteComponentProps<any> {
   form: any;
 }
 
 class RegistrationForm extends Component<IRegistrationFormProps, {}> {
-  userService = new UserService();
-  handleSubmit = (e: any) => {
+  private userService = UserService.instance;
+
+  handleSubmit = async (e: any) => {
     e.preventDefault();
     const formData = this.props.form.getFieldsValue();
-    this.userService.register(formData);
+    if (await this.userService.register(formData)) {
+      this.props.history.push('/login');
+    }
   };
 
   render() {
@@ -115,6 +119,4 @@ class RegistrationForm extends Component<IRegistrationFormProps, {}> {
   }
 }
 
-export default Form.create({
-  name: 'register-form',
-})(RegistrationForm);
+export default Form.create({ name: 'register-form' })(withRouter(RegistrationForm));

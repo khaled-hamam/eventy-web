@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Input, Radio, Button, Icon } from 'antd';
 
-import { UserService } from '../../Services/userServices/user.service';
 import { Logo } from '../../components/Logo';
 import RegisterForm from '../../components/RegisterForm';
 import '../Forms.css';

@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Form, Input, DatePicker, Checkbox, InputNumber } from 'antd';
 import './EventForm.css';
-import CreateEvent from '../CreateEvent';
-import { EventService } from '../../../Services/eventServices/event.service';
+import { EventService } from '../../../services/eventServices/event.service';
 interface ICreateEventFormProps {
   form: any;
 }

@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import { Card, Button } from 'antd';
 import { Request } from '../../dtos/Request';
-import { Link } from 'react-router-dom';
-import { RequestState } from '../../dtos/RequestState.enum';
-import { RequestService } from '../../Services/request.service';
-const { Meta } = Card;
+import { RequestService } from '../../services/request.service';
 
 interface IRequestState {
   request?: Request;
