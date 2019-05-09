@@ -11,6 +11,7 @@ export class CreateEventForm extends Component<ICreateEventFormProps, {}> {
   submitCreate = (e: any) => {
     e.preventDefault();
     const formData = this.props.form.getFieldsValue();
+    console.log(formData);
     this.eventService.create(formData);
   };
   render() {
@@ -23,54 +24,47 @@ export class CreateEventForm extends Component<ICreateEventFormProps, {}> {
         <Form.Item className="d-flex pt-4">
           {getFieldDecorator('name', {
             rules: [{ required: true, message: 'Please Enter Event Name' }],
-          })}
-          <Input placeholder="Name" />
+          })(<Input placeholder="Name" />)}
         </Form.Item>
         <Form.Item>
           {getFieldDecorator('description', {
             rules: [{ required: true, message: 'Please Enter Event Description' }],
-          })}
-          <Input placeholder="Description" />
+          })(<Input placeholder="Description" />)}
         </Form.Item>
 
         <Form.Item>
           {getFieldDecorator('date', {
             rules: [{ required: true, message: 'Please Enter Event Date' }],
-          })}
-          <DatePicker />
+          })(<DatePicker />)}
         </Form.Item>
 
         <Form.Item>
           {getFieldDecorator('location', {
             rules: [{ required: true, message: 'Please Enter Event Location' }],
-          })}
-          <Input placeholder="Location" />
+          })(<Input placeholder="Location" />)}
         </Form.Item>
 
         <Form.Item>
           {getFieldDecorator('type', {
             rules: [{ required: true, message: 'Please Enter Event Type' }],
-          })}
-          <Input placeholder="Type" />
+          })(<Input placeholder="Type" />)}
         </Form.Item>
 
-        <Form.Item>
+        <Form.Item label="Budget">
           <div className="d-flex justify-content align-items flex-column">
             {getFieldDecorator('budget', {
+              initialValue: 1000,
               rules: [{ required: true, message: 'Please Enter Event Budget' }],
-            })}
-            <p>Budget</p>
-            <InputNumber min={1000} max={10000} defaultValue={1000} />
+            })(<InputNumber min={1000} max={10000} defaultValue={1000} />)}
           </div>
         </Form.Item>
 
-        <Form.Item>
+        <Form.Item label="Number of attendees">
           <div className="d-flex justify-content align-items flex-column">
             {getFieldDecorator('attendeesLimit', {
+              initialValue: 1,
               rules: [{ required: true, message: 'Please Enter Number of Attendees' }],
-            })}
-            <p>Number of attendees</p>
-            <InputNumber min={1} max={500} defaultValue={1} />
+            })(<InputNumber min={1} max={500} defaultValue={1} />)}
           </div>
         </Form.Item>
 
@@ -78,14 +72,17 @@ export class CreateEventForm extends Component<ICreateEventFormProps, {}> {
           <div className="d-flex justify-content align-items flex-column">
             {getFieldDecorator('eventOptions', {
               rules: [{ required: false }],
-            })}
-            <p>Event Option</p>
-            <div className="d-flex flex-row">
-              <Checkbox>DJ</Checkbox>
-              <Checkbox>Decoration</Checkbox>
-              <Checkbox>Photographer</Checkbox>
-              <Checkbox>Catering</Checkbox>
-            </div>
+            })(
+              <div>
+                <p>Event Option</p>
+                <div className="d-flex flex-row">
+                  <Checkbox>DJ</Checkbox>
+                  <Checkbox>Decoration</Checkbox>
+                  <Checkbox>Photographer</Checkbox>
+                  <Checkbox>Catering</Checkbox>
+                </div>
+              </div>,
+            )}
           </div>
         </Form.Item>
 

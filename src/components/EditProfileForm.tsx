@@ -3,6 +3,7 @@ import { Form, Input, Button } from 'antd';
 
 import '../containers/Forms.css';
 import { ProfileService } from '../Services/profileServices/profile.service';
+import { Link } from 'react-router-dom';
 
 interface IEditProfileProps {
   form?: any;
@@ -57,7 +58,7 @@ class EditProfileForm extends Component<IEditProfileProps, {}> {
               Save Changes
             </Button>
             <a className="p-2" href="">
-              Cancel
+              <Link to="/">Cancel</Link>
             </a>
           </div>
         </Form.Item>

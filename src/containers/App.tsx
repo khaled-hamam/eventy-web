@@ -19,7 +19,6 @@ const App: React.FC = () => {
         <Route path="/EditEvent" exact component={EditEvent} />
         <Route path="/login" exact component={LoginPage} />
         <Route path="/register" exact component={RegistrationPage} />
-        <Route path="/landingPage" exact component={LandingPage} />
         <Route path="/editProfile" exact component={EditProfile} />
         <Route path="/register" exact component={RegistrationPage} />
         <Route path="/event/:id" exact component={EventPage} />
