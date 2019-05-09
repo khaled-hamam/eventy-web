@@ -36,7 +36,7 @@ export class UserService {
 
   public async register(registerDTO: RegisterDTO): Promise<boolean> {
     try {
-      const res = await axios.post('/users/register', registerDTO);
+      await axios.post('/users/register', registerDTO);
       message.success('Now You are ready to login 😎');
       return true;
     } catch (error) {

@@ -1,3 +1,5 @@
+import { Event } from './Event';
+
 export interface Profile {
   username: string;
   email: string;
@@ -5,5 +7,6 @@ export interface Profile {
   mobile: string;
   pictureURL: string;
   events: Event[];
+  rating?: number;
   role: 'planner' | 'creator';
 }

@@ -30,6 +30,7 @@ class App extends React.Component {
           <Route path="/register" exact component={RegistrationPage} />
           <Route path="/event/:id" exact component={EventPage} />
           <Route path="/request" exact component={RequestPage} />
+          <Route path="/profile/:username" exact component={ProfilePage} />
         </Router>
       </React.Fragment>
     );
