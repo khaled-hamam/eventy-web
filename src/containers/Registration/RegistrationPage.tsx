@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-import { UserService } from '../../Services/userServices/user.service';
 import { Logo } from '../../components/Logo';
 import RegisterForm from '../../components/RegisterForm';
 import '../Forms.css';
@@ -12,7 +11,6 @@ interface IRegistrationProps {
 interface IRegistrationState {}
 
 export default class RegistrationPage extends Component<IRegistrationProps, IRegistrationState> {
-
   render() {
     return (
       <div className="d-flex h-100">

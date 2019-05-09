@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Form, Input, Checkbox, DatePicker, InputNumber, Button } from 'antd';
 import './EditForm.css';
-import { EventService } from '../../../Services/eventServices/event.service';
+import { EventService } from '../../../services/eventServices/event.service';
 import moment from 'moment';
 
 interface IEditEventFormProps {

@@ -2,15 +2,20 @@ import React, { Component } from 'react';
 import { Form, Input, Button } from 'antd';
 
 import '../containers/Forms.css';
+import { ProfileService } from '../services/profileServices/profile.service';
+import { Link } from 'react-router-dom';
 
 interface IEditProfileProps {
   form?: any;
 }
 
 class EditProfileForm extends Component<IEditProfileProps, {}> {
+  profileService = new ProfileService();
   handleSubmit = (e: any) => {
     e.preventDefault();
     const formData = this.props.form.getFieldsValue();
+    console.log(formData);
+    this.profileService.editProfile(formData);
   };
 
   render() {
@@ -43,7 +48,7 @@ class EditProfileForm extends Component<IEditProfileProps, {}> {
           })(<Input />)}
         </Form.Item>
         <Form.Item label="Picture URL">
-          {getFieldDecorator('pictureUrL', {
+          {getFieldDecorator('pictureURL', {
             initialValue: 'https://img.rasset.ie/000fc0a3-500.jpg',
           })(<Input />)}
         </Form.Item>
@@ -52,15 +57,16 @@ class EditProfileForm extends Component<IEditProfileProps, {}> {
             <Button onClick={this.handleSubmit} shape="round" className="form-button">
               Save Changes
             </Button>
-            <a className="p-2" href="">
-              Cancel
-            </a>
+            <Button shape="round" className="p-2 form-button" href="">
+              <Link to="/">Cancel</Link>
+            </Button>
           </div>
         </Form.Item>
       </Form>
     );
   }
 }
+
 export default Form.create({
   name: 'editProfile-form',
 })(EditProfileForm);
