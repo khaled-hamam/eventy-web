@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Form, Input, Radio, Button, Icon } from 'antd';
 
 import { UserService } from '../../Services/userServices/user.service';
 import { Logo } from '../../components/Logo';
@@ -12,7 +13,6 @@ interface IRegistrationProps {
 interface IRegistrationState {}
 
 export default class RegistrationPage extends Component<IRegistrationProps, IRegistrationState> {
-
   render() {
     return (
       <div className="d-flex h-100">
