@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Form, Input, Button, Icon, Checkbox } from 'antd';
 import { UserService } from '../Services/userServices/user.service';
 import '../containers/Forms.css';
+import { Link } from 'react-router-dom';
 
 interface ILoginFormProps {
   form?: any;
@@ -53,8 +54,8 @@ class LoginForm extends Component<ILoginFormProps, {}> {
           <Button onClick={this.submitLogin} shape="round" className="form-button">
             Log in
           </Button>
-          <div className="d-flex justify-content-center align-items-center">
-            <a href="">Register Now</a>
+          <div className="d-flex justify-content-center align-items-center p-3">
+            <Link to="/register">Register Now</Link>
           </div>
         </Form.Item>
       </Form>
