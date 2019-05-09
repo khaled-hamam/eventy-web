@@ -1,20 +1,24 @@
 import React, { Component } from 'react';
 import { Form, Input, Button, Icon, Checkbox } from 'antd';
-import { UserService } from '../Services/userServices/user.service';
+import { UserService } from '../services/userServices/user.service';
 import '../containers/Forms.css';
-import { Link } from 'react-router-dom';
+import { Link, RouteComponentProps, withRouter } from 'react-router-dom';
 
-interface ILoginFormProps {
+interface ILoginFormProps extends RouteComponentProps<any> {
   form?: any;
 }
 
 class LoginForm extends Component<ILoginFormProps, {}> {
-  userService = new UserService();
-  submitLogin = (e: any) => {
+  private userService = UserService.instance;
+
+  submitLogin = async (e: any) => {
     e.preventDefault();
     const formData = this.props.form.getFieldsValue();
-    this.userService.register(formData);
+    if (await this.userService.login(formData)) {
+      this.props.history.push('/');
+    }
   };
+
   render() {
     const { getFieldDecorator } = this.props.form;
     return (
@@ -63,6 +67,4 @@ class LoginForm extends Component<ILoginFormProps, {}> {
   }
 }
 
-export default Form.create({
-  name: 'login-form',
-})(LoginForm);
+export default Form.create({ name: 'login-form' })(withRouter(LoginForm));

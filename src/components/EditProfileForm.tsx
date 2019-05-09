@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Form, Input, Button } from 'antd';
 
 import '../containers/Forms.css';
-import { ProfileService } from '../Services/profileServices/profile.service';
+import { ProfileService } from '../services/profileServices/profile.service';
 import { Link } from 'react-router-dom';
 
 interface IEditProfileProps {
@@ -57,15 +57,16 @@ class EditProfileForm extends Component<IEditProfileProps, {}> {
             <Button onClick={this.handleSubmit} shape="round" className="form-button">
               Save Changes
             </Button>
-            <a className="p-2" href="">
+            <Button shape="round" className="p-2 form-button" href="">
               <Link to="/">Cancel</Link>
-            </a>
+            </Button>
           </div>
         </Form.Item>
       </Form>
     );
   }
 }
+
 export default Form.create({
   name: 'editProfile-form',
 })(EditProfileForm);

@@ -3,7 +3,7 @@ import moment from 'moment';
 import React, { Component } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 import { Event } from '../../dtos/Event';
-import { EventService } from '../../Services/event.service';
+import { EventService } from '../../services/event.service';
 import EventCardInfo from './components/EventCardInfo';
 import './EventPage.css';
 const { Meta } = Card;
@@ -78,7 +78,7 @@ export default class EventPage extends Component<IEventProps, IEventState> {
         <div className="d-flex  flex-row  justify-content-around" style={{ margin: '2%' }}>
           <Carousel className="d-flex w-50 h-50 " autoplay>
             {event.photosURL.map(el => (
-              <img src={el} />
+              <img src={el} alt="Event photos" />
             ))}
           </Carousel>
 
