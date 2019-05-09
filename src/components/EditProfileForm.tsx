@@ -13,7 +13,8 @@ class EditProfileForm extends Component<IEditProfileProps, {}> {
   handleSubmit = (e: any) => {
     e.preventDefault();
     const formData = this.props.form.getFieldsValue();
-    // FIXME: this.profileService.editProfile(formData);
+    console.log(formData);
+    this.profileService.editProfile(formData);
   };
 
   render() {
@@ -46,7 +47,7 @@ class EditProfileForm extends Component<IEditProfileProps, {}> {
           })(<Input />)}
         </Form.Item>
         <Form.Item label="Picture URL">
-          {getFieldDecorator('pictureUrL', {
+          {getFieldDecorator('pictureURL', {
             initialValue: 'https://img.rasset.ie/000fc0a3-500.jpg',
           })(<Input />)}
         </Form.Item>
