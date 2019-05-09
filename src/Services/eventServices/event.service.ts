@@ -3,6 +3,9 @@ import axios from 'axios';
 import { EditEventDTO } from './dto/EditEvent.dto';
 
 export class EventService {
+  public async getEvent(id: number) {
+    return await axios.get(`/events/${id}`);
+  }
   public async create(createEventDTO: CreateEventDTO) {
     console.log(createEventDTO);
     await axios.post('/events/create', createEventDTO);

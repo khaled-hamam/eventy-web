@@ -1,9 +1,9 @@
-import { Avatar, Card, Carousel } from 'antd';
+import { Avatar, Card, Carousel, Button } from 'antd';
 import moment from 'moment';
 import React, { Component } from 'react';
-import { RouteComponentProps } from 'react-router-dom';
+import { RouteComponentProps, Link } from 'react-router-dom';
 import { Event } from '../../dtos/Event';
-import { EventService } from '../../services/event.service';
+import { EventService } from '../../services/eventServices/event.service';
 import EventCardInfo from './components/EventCardInfo';
 import './EventPage.css';
 const { Meta } = Card;
@@ -71,7 +71,7 @@ export default class EventPage extends Component<IEventProps, IEventState> {
           className="headerCards d-flex justify-content-around align-items-center flex-row"
         >
           <EventCardInfo header="DATE" value={moment(event.date).format('LL')} icon="far fa-clock" />
-          <EventCardInfo header="Location" value={event.name} icon="fas fa-map-marker-alt" />
+          <EventCardInfo header="Location" value={'location'} icon="fas fa-map-marker-alt" />
           <EventCardInfo header="Seats" value={event.attendeesLimit.toString()} icon="fas fa-chair" />
         </div>
 
@@ -81,7 +81,15 @@ export default class EventPage extends Component<IEventProps, IEventState> {
               <img src={el} alt="Event photos" />
             ))}
           </Carousel>
-
+          <div>
+            <Button style={{ marginBottom: '5%', height: '50px', width: '200px', color: 'red' }}>
+              <Link to="/">Cancel</Link>
+            </Button>
+            <br />
+            <Button style={{ height: '50px', width: '200px', color: 'green' }}>
+              <Link to="/EditEvent">Edit</Link>
+            </Button>
+          </div>
           <div className="verticalLine" />
 
           <div className="Cards d-flex flex-column  justify-content-around">
