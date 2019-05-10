@@ -5,7 +5,7 @@ import { Request } from './../dtos/Request';
 export class RequestService {
   public async getRequests(): Promise<Request[]> {
     try {
-      const res = await axios.post<Request[]>('/requests');
+      const res = await axios.get<Request[]>('/requests');
       return res.data;
     } catch (error) {
       console.log(error);
