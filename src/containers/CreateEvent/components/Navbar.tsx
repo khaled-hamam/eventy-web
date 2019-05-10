@@ -3,13 +3,21 @@ import { Button } from 'antd';
 import './Navbar.css';
 import { Link } from 'react-router-dom';
 import { Logo } from '../../../components/Logo';
+import { UserService } from '../../../services/userServices/user.service';
+
 export class Navbar extends Component {
   render() {
     return (
       <nav className="d-flex align-items-center py-2 px-4">
         <Logo />
         <Button className="profile">
-          <Link to="editProfile">Profile</Link>
+          <Link
+            to={`Profile/${
+              UserService.instance.user.value ? UserService.instance.user.value.username : 'khaled'
+            }`}
+          >
+            Profile
+          </Link>
         </Button>
         <Button className="logout">
           <Link to="/">Logout</Link>

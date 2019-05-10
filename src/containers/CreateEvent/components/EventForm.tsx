@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
-import { Button, Form, Input, DatePicker, Checkbox, InputNumber } from 'antd';
+import { Button, Form, Input, DatePicker, Checkbox, InputNumber, message } from 'antd';
 import './EventForm.css';
 import moment from 'moment';
 import { EventService } from '../../../services/eventServices/event.service';
-interface ICreateEventFormProps {
+import { RouteComponentProps, withRouter } from 'react-router-dom';
+
+interface ICreateEventFormProps extends RouteComponentProps<any> {
   form: any;
 }
+
 export class CreateEventForm extends Component<ICreateEventFormProps, {}> {
   eventService = new EventService();
-  submitCreate = (e: any) => {
+  submitCreate = async (e: any) => {
     e.preventDefault();
     const formData = this.props.form.getFieldsValue();
     formData.date = moment(formData.date).format('YYYY-MM-DDTHH:mm:ssZ');
@@ -19,8 +22,15 @@ export class CreateEventForm extends Component<ICreateEventFormProps, {}> {
     formData['eventOptions'] = [];
     console.log(formData.eventOptions);
     console.log(formData);
-    this.eventService.create(formData);
+    const res = await this.eventService.create(formData);
+    if (res !== undefined) {
+      message.success('Event Created Successfully!');
+      this.props.history.push(`/event/${res}`);
+    } else {
+      message.error('An error occured.');
+    }
   };
+
   render() {
     const { getFieldDecorator } = this.props.form;
     return (
@@ -102,6 +112,7 @@ export class CreateEventForm extends Component<ICreateEventFormProps, {}> {
     );
   }
 }
+
 export default Form.create({
   name: 'event-form',
-})(CreateEventForm);
+})(withRouter(CreateEventForm));

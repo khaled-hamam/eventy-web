@@ -59,7 +59,10 @@ export default class EventPage extends Component<IEventProps, IEventState> {
       <div className="h-100">
         <div
           className=" header-img h-50 d-flex justify-content-center align-items-center flex-column"
-          style={{ backgroundImage: `url(${event.photosURL[0]})` }}
+          style={{
+            backgroundImage: `url(${event.photosURL[0] ||
+              'https://c.ndtvimg.com/2018-11/68g3f5sk_event-generic_625x300_16_November_18.jpg'})`,
+          }}
         >
           <h1 className="text-white">{event.name}</h1>
           <h3 className="text-white">{event.type}</h3>
@@ -77,9 +80,13 @@ export default class EventPage extends Component<IEventProps, IEventState> {
 
         <div className="d-flex  flex-row  justify-content-around" style={{ margin: '2%' }}>
           <Carousel className="d-flex w-50 h-50 " autoplay>
-            {event.photosURL.map(el => (
-              <img src={el} alt="Event photos" />
-            ))}
+            {event.photosURL.length
+              ? event.photosURL.map(el => <img src={el} alt="Event photos" />)
+              : [
+                  'https://c.ndtvimg.com/2018-11/68g3f5sk_event-generic_625x300_16_November_18.jpg',
+                  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVHcvZGUka9twFOW-F_ERHVMxl4PrWuQYB2sK0zxfV84wYVxqEbg',
+                  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKvST-ao9SCFCXoktADGYOAnQvDQlnugRCQYGEvsKurGuBaW0-',
+                ].map(el => <img src={el} alt="Event photos" />)}
           </Carousel>
           <div>
             <Button style={{ marginBottom: '5%', height: '50px', width: '200px', color: 'red' }}>
@@ -114,16 +121,18 @@ export default class EventPage extends Component<IEventProps, IEventState> {
                 avatar={
                   <Avatar
                     src={
-                      event.planner.pictureURL ||
-                      'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png'
+                      event.planner
+                        ? event.planner.pictureURL ||
+                          'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png'
+                        : 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png'
                     }
                   />
                 }
                 //avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
                 title="Event Planner"
-                description={event.planner.username}
+                description={event.planner ? event.planner.username : 'Not Assigned'}
               />
-              RATING: {event.planner.rating}
+              {event.planner && `RATING: ${event.planner.rating}`}
             </Card>
           </div>
 

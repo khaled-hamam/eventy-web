@@ -4,7 +4,9 @@ import './config/axios.config';
 import './index.css';
 import App from './containers/App';
 import * as serviceWorker from './serviceWorker';
+import { UserService } from './services/userServices/user.service';
 
+UserService.instance.checkToken();
 ReactDOM.render(<App />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
