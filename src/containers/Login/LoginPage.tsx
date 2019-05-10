@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import '../Forms.css';
-import { Logo } from '../../components/Logo';
+import { Logo } from '../../components/Logo/Logo';
 import LoginForm from '../../components/LoginForm';
 interface ILoginProps {}
 
