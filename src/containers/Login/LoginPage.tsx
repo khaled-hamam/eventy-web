@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import '../Forms.css';
 import { Logo } from '../../components/Logo/Logo';
-import LoginForm from '../../components/LoginForm';
+import LoginForm from './components/LoginForm';
+
 interface ILoginProps {}
 
 interface ILoginState {}
@@ -13,7 +14,6 @@ export default class LoginPage extends Component<ILoginProps, ILoginState> {
         <div className="fixed">
           <Logo />
         </div>
-        <div className="d-flex justify-content-center align-items-center h-100" />
         <LoginForm />
       </div>
     );

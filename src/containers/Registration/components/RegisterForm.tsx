@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import { Form, Input, Radio, Button, Icon } from 'antd';
+import { Form, Input, Radio, Icon } from 'antd';
 
-import '../containers/Forms.css';
-import { UserService } from '../services/userServices/user.service';
+import '../../Forms.css';
+import { UserService } from '../../../services/userServices/user.service';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
+import FormHeader from '../../../components/FormHeader/FormHeader';
+import SubmitButton from '../../../components/SubmitButton';
 
 interface IRegistrationFormProps extends RouteComponentProps<any> {
   form: any;
@@ -33,36 +35,34 @@ class RegistrationForm extends Component<IRegistrationFormProps, {}> {
       },
     };
     return (
-      <Form {...formItemLayout} className="form flex-grow-1 h-100">
+      <Form {...formItemLayout} className="form flex-grow-1 d-flex flex-column justify-content-center">
         <div className="d-flex justify-content-center align-items-center">
           <Icon type="user-add" style={{ fontSize: '100px', color: '#ff4d4f' }} />
         </div>
-        <h5 className="card-header text-center" style={{ background: ' #ff4d4f' }}>
-          <strong style={{ color: 'white' }}>Registration</strong>
-        </h5>
-        <Form.Item {...formItemLayout} label="fullName">
+        <FormHeader>Registration</FormHeader>
+        <Form.Item {...formItemLayout} label="Full Name" className="mt-4">
           {getFieldDecorator('fullName', {
             rules: [
               {
                 required: true,
-                message: 'Please input your fullName',
+                message: 'Please input your Full Name',
               },
             ],
-          })(<Input placeholder="Please input your fullName" />)}
+          })(<Input placeholder="Please input your Full Name" />)}
         </Form.Item>
-        <Form.Item label="E-mail">
+        <Form.Item label="Email">
           {getFieldDecorator('email', {
             rules: [
               {
                 type: 'email',
-                message: 'The input is not valid E-mail!',
+                message: 'The input is not valid Email!',
               },
               {
                 required: true,
-                message: 'Please input your E-mail!',
+                message: 'Please input your Email!',
               },
             ],
-          })(<Input placeholder="Please Enter your E-mail" />)}
+          })(<Input placeholder="Please Enter your Email" />)}
         </Form.Item>
         <Form.Item label="Username">
           {getFieldDecorator('username', {
@@ -109,9 +109,7 @@ class RegistrationForm extends Component<IRegistrationFormProps, {}> {
         </Form.Item>
         <Form.Item className="d-flex justify-content-center align-items-center">
           <div className="d-flex justify-content-center align-items-center">
-            <Button onClick={this.handleSubmit} shape="round" className="form-button">
-              Submit
-            </Button>
+            <SubmitButton onSubmit={this.handleSubmit}>Submit</SubmitButton>
           </div>
         </Form.Item>
       </Form>

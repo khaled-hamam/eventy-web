@@ -3,25 +3,30 @@ import { Form, Input, Checkbox, DatePicker, InputNumber, Button } from 'antd';
 import './EditForm.css';
 import { EventService } from '../../../services/eventServices/event.service';
 import moment from 'moment';
+import FormHeader from '../../../components/FormHeader/FormHeader';
+import SubmitButton from '../../../components/SubmitButton';
+import { toEnumKeys } from '../../../utils/toEnumKeys';
+import { EventOptions } from '../../../services/eventServices/dto/CreateEvent.dto';
 
 interface IEditEventFormProps {
   form: any;
 }
+
 export class EditForm extends Component<IEditEventFormProps, {}> {
-  eventService = new EventService();
+  private eventService = new EventService();
+
   submitEdit = (e: any) => {
     e.preventDefault();
     const formData = this.props.form.getFieldsValue();
     this.eventService.update(formData);
   };
+
   render() {
     const { getFieldDecorator } = this.props.form;
     const dateFormat = 'YYYY/MM/DD';
     return (
       <Form className="form-style">
-        <h5 className="card-header text-center" style={{ background: ' #ff4d4f' }}>
-          <strong style={{ color: 'white' }}>Edit Event</strong>
-        </h5>
+        <FormHeader>Edit Event</FormHeader>
         <Form.Item className="d-flex pt-4">
           {getFieldDecorator('name', {
             initialValue: 'Chantal birthday',
@@ -67,18 +72,15 @@ export class EditForm extends Component<IEditEventFormProps, {}> {
           <div className="d-flex justify-content align-items flex-column">
             <p>Event Option</p>
             <div className="d-flex flex-row">
-              <Checkbox>DJ</Checkbox>
-              <Checkbox>Decoration</Checkbox>
-              <Checkbox>Photographer</Checkbox>
-              <Checkbox>Catering</Checkbox>
+              {toEnumKeys(EventOptions).map(key => (
+                <Checkbox>{key}</Checkbox>
+              ))}
             </div>
           </div>
         </Form.Item>
 
-        <div className="d-flex justify-content-center align-items-center ">
-          <Button onClick={this.submitEdit} shape="round" className="form-button" type="primary">
-            Submit
-          </Button>
+        <div className="d-flex justify-content-center mt-4">
+          <SubmitButton onSubmit={this.submitEdit} />
         </div>
       </Form>
     );

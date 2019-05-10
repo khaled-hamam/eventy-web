@@ -3,6 +3,7 @@ import { Button } from 'antd';
 
 interface ISubmitButtonProps {
   onSubmit: (event: any) => void;
+  children?: any;
 }
 
 const SubmitButton = (props: ISubmitButtonProps) => (
@@ -13,7 +14,7 @@ const SubmitButton = (props: ISubmitButtonProps) => (
     onClick={props.onSubmit}
     style={{ minWidth: '200pt' }}
   >
-    Submit
+    {props.children || 'Submit'}
   </Button>
 );
 
