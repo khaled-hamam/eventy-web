@@ -10,7 +10,7 @@ export class LandingBody extends Component {
         <h3 className="font-weight-light slogan">WE CREATE</h3>
         <h1 className="font-weight-bold slogan">YOU CELEBRATE</h1>
         <Button className="eventy-btn" shape="round" type="primary">
-          <Link to="/CreateEvent">CREATE EVENT NOW</Link>
+          <Link to="/create-event">CREATE EVENT NOW</Link>
         </Button>
       </div>
     );

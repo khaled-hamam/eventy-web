@@ -4,14 +4,21 @@ import './EventForm.css';
 import moment from 'moment';
 import { EventService } from '../../../services/eventServices/event.service';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
+import { EventOptions } from '../../../services/eventServices/dto/EditEvent.dto';
+import { toEnumKeys } from '../../../utils/toEnumKeys';
+import FormHeader from '../../../components/FormHeader/FormHeader';
+import SubmitButton from '../../../components/SubmitButton';
 
 interface ICreateEventFormProps extends RouteComponentProps<any> {
   form: any;
 }
 
 export class CreateEventForm extends Component<ICreateEventFormProps, {}> {
-  eventService = new EventService();
+  private eventService = new EventService();
+
   submitCreate = async (e: any) => {
+    // TODO: Fix integration with Backend
+    // TODO: Integrate with Google Maps API
     e.preventDefault();
     const formData = this.props.form.getFieldsValue();
     formData.date = moment(formData.date).format('YYYY-MM-DDTHH:mm:ssZ');
@@ -35,9 +42,8 @@ export class CreateEventForm extends Component<ICreateEventFormProps, {}> {
     const { getFieldDecorator } = this.props.form;
     return (
       <Form className="form-style">
-        <h5 className="card-header text-center" style={{ background: ' #ff4d4f' }}>
-          <strong style={{ color: 'white' }}>Create Event</strong>
-        </h5>
+        <FormHeader>Create Event</FormHeader>
+
         <Form.Item className="d-flex pt-4">
           {getFieldDecorator('name', {
             rules: [{ required: true, message: 'Please Enter Event Name' }],
@@ -85,28 +91,23 @@ export class CreateEventForm extends Component<ICreateEventFormProps, {}> {
           </div>
         </Form.Item>
 
-        <Form.Item>
+        <Form.Item label="Event Options">
           <div className="d-flex justify-content align-items flex-column">
             {getFieldDecorator('eventOptions', {
               rules: [{ required: false }],
             })(
               <div>
-                <p>Event Option</p>
                 <div className="d-flex flex-row">
-                  <Checkbox>DJ</Checkbox>
-                  <Checkbox>Decoration</Checkbox>
-                  <Checkbox>Photographer</Checkbox>
-                  <Checkbox>Catering</Checkbox>
+                  {toEnumKeys(EventOptions).map(key => (
+                    <Checkbox>{key}</Checkbox>
+                  ))}
                 </div>
               </div>,
             )}
           </div>
         </Form.Item>
-
-        <div className="d-flex justify-content-center align-items-center ">
-          <Button onClick={this.submitCreate} shape="round" className="form-button" type="primary">
-            Submit
-          </Button>
+        <div className="d-flex justify-content-center mt-4">
+          <SubmitButton onSubmit={this.submitCreate} />
         </div>
       </Form>
     );
