@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-
 import { Logo } from '../../components/Logo/Logo';
-import RegisterForm from '../../components/RegisterForm';
+import RegisterForm from './components/RegisterForm';
 import '../Forms.css';
 
 interface IRegistrationProps {

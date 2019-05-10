@@ -4,6 +4,7 @@ export enum EventOptions {
   Decoration,
   Catering,
 }
+
 export interface ILocation {
   latitude: string;
   longitude: string;
