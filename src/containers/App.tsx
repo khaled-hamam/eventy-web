@@ -10,13 +10,8 @@ import RegistrationPage from './Registration/RegistrationPage';
 import EditProfile from './Profile/EditProfile';
 import EventPage from './EventPage/EventPage';
 import RequestPage from './RequestPage/RequestPage';
-import { UserService } from '../services/userServices/user.service';
 
 class App extends React.Component {
-  componentDidMount() {
-    UserService.instance.checkToken();
-  }
-
   render() {
     return (
       <React.Fragment>

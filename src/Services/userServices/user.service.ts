@@ -49,6 +49,7 @@ export class UserService {
   public async logout() {
     this.user.next(undefined);
     localStorage.removeItem('token');
+    delete axios.defaults.headers.common.Authorization;
   }
 
   public async checkToken() {
@@ -61,6 +62,6 @@ export class UserService {
   private decodeToken(token: string) {
     const decoded = jwt_decode<UserToken>(token);
     this.user.next(decoded);
-    axios.defaults.headers.authorization = `Bearer ${token}`;
+    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
   }
 }
