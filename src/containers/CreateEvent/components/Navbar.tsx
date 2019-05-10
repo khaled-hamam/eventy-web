@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Button } from 'antd';
 import './Navbar.css';
 import { Link } from 'react-router-dom';
-import { Logo } from '../../../components/Logo';
+import { Logo } from '../../../components/Logo/Logo';
 import { UserService } from '../../../services/userServices/user.service';
 
 export class Navbar extends Component {

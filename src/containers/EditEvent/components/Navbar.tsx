@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Button } from 'antd';
 import './Navbar.css';
-import { Logo } from '../../../components/Logo';
+import { Logo } from '../../../components/Logo/Logo';
 
 export class Navbar extends Component {
   render() {
