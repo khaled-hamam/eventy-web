@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Input, DatePicker, Checkbox, InputNumber, message } from 'antd';
+import { Button, Form, Input, DatePicker, Checkbox, InputNumber, message, Select } from 'antd';
 import './EventForm.css';
 import moment from 'moment';
 import { EventService } from '../../../services/eventServices/event.service';
@@ -22,13 +22,12 @@ export class CreateEventForm extends Component<ICreateEventFormProps, {}> {
     e.preventDefault();
     const formData = this.props.form.getFieldsValue();
     formData.date = moment(formData.date).format('YYYY-MM-DDTHH:mm:ssZ');
+
     formData.location = {
-      latitude: '1',
-      longitude: '2',
+      latitude: formData.location.split(',')[0],
+      longitude: formData.location.split(',')[1],
     };
-    formData['eventOptions'] = [];
-    console.log(formData.eventOptions);
-    console.log(formData);
+
     const res = await this.eventService.create(formData);
     if (res !== undefined) {
       message.success('Event Created Successfully!');
@@ -36,12 +35,17 @@ export class CreateEventForm extends Component<ICreateEventFormProps, {}> {
     } else {
       message.error('An error occured.');
     }
+    //formData['eventOptions'] = [];
+    console.log(formData.eventOptions);
+    console.log(formData);
   };
-
   render() {
+    const fillEventOptions = toEnumKeys(EventOptions).map((option, index) => (
+      <Select.Option key={index}>{option}</Select.Option>
+    ));
     const { getFieldDecorator } = this.props.form;
     return (
-      <Form className="form-style">
+      <Form className="form-style d-flex flex-column justify-content-center">
         <FormHeader>Create Event</FormHeader>
 
         <Form.Item className="d-flex pt-4">
@@ -92,20 +96,9 @@ export class CreateEventForm extends Component<ICreateEventFormProps, {}> {
         </Form.Item>
 
         <Form.Item label="Event Options">
-          <div className="d-flex justify-content align-items flex-column">
-            {getFieldDecorator('eventOptions', {
-              rules: [{ required: false }],
-            })(
-              <div>
-                <div className="d-flex flex-row">
-                  {toEnumKeys(EventOptions).map(key => (
-                    <Checkbox>{key}</Checkbox>
-                  ))}
-                </div>
-              </div>,
-            )}
-          </div>
+          {getFieldDecorator('eventOptions', {})(<Select mode="multiple">{fillEventOptions}</Select>)}
         </Form.Item>
+
         <div className="d-flex justify-content-center mt-4">
           <SubmitButton onSubmit={this.submitCreate} />
         </div>

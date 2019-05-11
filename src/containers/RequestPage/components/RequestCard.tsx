@@ -1,9 +1,14 @@
-import React, { Component } from 'react';
-import { Card, Button } from 'antd';
+import React from 'react';
+import { Card } from 'antd';
+import { Request } from '../../../dtos/Request';
+import { RequestService } from '../../../services/request.service';
+import { RouteComponentProps } from 'react-router';
 
 interface IRequestCardProps {
-  title: string;
-  value: string;
+  eventId: number;
+  creatorUserName: string;
+  eventName: string;
+  creatorName: string;
 }
 
 export class RequestCard extends Component<IRequestCardProps, {}> {

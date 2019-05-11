@@ -7,6 +7,6 @@ export class ProfileService {
   }
 
   public async editProfile(editedProfile: EditProfileDTO) {
-    await axios.put('/profiles', editedProfile);
+    await axios.put(`/profiles/`, editedProfile);
   }
 }
