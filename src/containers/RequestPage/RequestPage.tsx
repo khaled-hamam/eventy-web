@@ -50,7 +50,6 @@ export default class RequestPage extends Component<{}, IRequestState> {
       <div style={{ margin: '5%' }} className="d-flex align-items-center justify-content-center flex-column">
         <h1 style={{ font: 'bold' }}>Pending Requests</h1>
         {this.state.requests.map(req => (
-<<<<<<< HEAD
           <div>
             <RequestCard
               eventId={req.event.id}
@@ -73,11 +72,6 @@ export default class RequestPage extends Component<{}, IRequestState> {
               </Button>
             </div>
           </div>
-||||||| merged common ancestors
-          <RequestCard title={req.event.name} value={req.event.creator.fullName} />
-=======
-          <RequestCard title={req.event.name} value={req.event.creator.fullName || ''} />
->>>>>>> 234662ed971fd04c86f5f45230a6e6b5abbc5b69
         ))}
       </div>
     );
