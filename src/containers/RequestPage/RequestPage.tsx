@@ -40,7 +40,7 @@ export default class RequestPage extends Component<{}, IRequestState> {
       <div style={{ margin: '5%' }} className="d-flex align-items-center justify-content-center flex-column">
         <h1 style={{ font: 'bold' }}>Pending Requests</h1>
         {this.state.requests.map(req => (
-          <RequestCard title={req.event.name} value={req.event.creator.fullName} />
+          <RequestCard title={req.event.name} value={req.event.creator.fullName || ''} />
         ))}
       </div>
     );

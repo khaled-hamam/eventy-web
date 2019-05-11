@@ -20,7 +20,7 @@ class App extends React.Component {
           <NavBar />
           <Route path="/" exact component={LandingPage} />
           <Route path="/create-event" exact component={CreateEvent} />
-          <Route path="/edit-event" exact component={EditEvent} />
+          <Route path="/event/:id/edit-event" exact component={EditEvent} />
           <Route path="/login" exact component={LoginPage} />
           <Route path="/register" exact component={RegistrationPage} />
           <Route path="/editProfile" exact component={EditProfile} />

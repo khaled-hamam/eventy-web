@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Input, Checkbox, DatePicker, InputNumber, Button } from 'antd';
+import { Form, Input, Checkbox, DatePicker, InputNumber, Button, Select } from 'antd';
 import './EditForm.css';
 import { EventService } from '../../../services/eventServices/event.service';
 import moment from 'moment';
@@ -7,21 +7,52 @@ import FormHeader from '../../../components/FormHeader/FormHeader';
 import SubmitButton from '../../../components/SubmitButton';
 import { toEnumKeys } from '../../../utils/toEnumKeys';
 import { EventOptions } from '../../../services/eventServices/dto/CreateEvent.dto';
+import { RouteComponentProps, withRouter } from 'react-router';
+import { Event } from '../../../dtos/Event';
 
 interface IEditEventFormProps {
   form: any;
 }
 
-export class EditForm extends Component<IEditEventFormProps, {}> {
-  private eventService = new EventService();
+interface IEditEventFormState {
+  event?: Event;
+}
 
+type MixedPropType = RouteComponentProps<{ id: string }> & RouteComponentProps<any>;
+
+interface IEditEventFormProps extends MixedPropType {}
+
+export class EditForm extends Component<IEditEventFormProps, IEditEventFormState> {
+  private eventService: EventService;
+
+  constructor(props: any) {
+    super(props);
+    this.eventService = new EventService();
+    this.state = {
+      event: undefined,
+    };
+  }
   submitEdit = (e: any) => {
     e.preventDefault();
     const formData = this.props.form.getFieldsValue();
-    this.eventService.update(formData);
+    this.eventService.update(formData, this.props.match.params.id);
+    console.log(formData);
   };
+  async componentDidMount() {
+    const e = await this.eventService.getEvent(this.props.match.params.id);
+    await this.setState({ event: e.data });
+
+    // console.log('***********', this.state.event);
+  }
 
   render() {
+    const { event } = this.state;
+    if (!event) {
+      return <div>Loading</div>;
+    }
+    const fillEventOptions = toEnumKeys(EventOptions).map((option, index) => (
+      <Select.Option key={index}>{option}</Select.Option>
+    ));
     const { getFieldDecorator } = this.props.form;
     const dateFormat = 'YYYY/MM/DD';
     return (
@@ -29,12 +60,12 @@ export class EditForm extends Component<IEditEventFormProps, {}> {
         <FormHeader>Edit Event</FormHeader>
         <Form.Item className="d-flex pt-4">
           {getFieldDecorator('name', {
-            initialValue: 'Chantal birthday',
+            initialValue: event.name,
           })(<Input />)}
         </Form.Item>
         <Form.Item>
           {getFieldDecorator('description', {
-            initialValue: 'My 21st birthday party',
+            initialValue: event.description,
           })(<Input />)}
         </Form.Item>
 
@@ -44,39 +75,36 @@ export class EditForm extends Component<IEditEventFormProps, {}> {
 
         <Form.Item>
           {getFieldDecorator('location', {
-            initialValue: 'Cairo, Egypt',
+            initialValue: '1 2',
           })(<Input />)}
         </Form.Item>
 
         <Form.Item>
           {getFieldDecorator('type', {
-            initialValue: 'Birthday Party',
+            initialValue: event.type,
           })(<Input disabled />)}
         </Form.Item>
 
-        <Form.Item>
+        <Form.Item label="Budget">
           <div className="d-flex justify-content align-items flex-column">
-            <p>Budget</p>
-            <InputNumber min={1000} max={10000} defaultValue={1000} />
+            {getFieldDecorator('budget', {
+              initialValue: event.budget,
+            })(<InputNumber min={1000} max={10000} />)}
           </div>
         </Form.Item>
 
-        <Form.Item>
+        <Form.Item label="Number of attendees">
           <div className="d-flex justify-content align-items flex-column">
-            <p>Number of attendees</p>
-            <InputNumber min={1} max={500} defaultValue={1} />
+            {getFieldDecorator('attendeesLimit', {
+              initialValue: event.attendeesLimit,
+            })(<InputNumber min={1} max={500} />)}
           </div>
         </Form.Item>
 
-        <Form.Item>
-          <div className="d-flex justify-content align-items flex-column">
-            <p>Event Option</p>
-            <div className="d-flex flex-row">
-              {toEnumKeys(EventOptions).map(key => (
-                <Checkbox>{key}</Checkbox>
-              ))}
-            </div>
-          </div>
+        <Form.Item label="Event Options">
+          {getFieldDecorator('eventOptions', {
+            initialValue: event.eventOptions,
+          })(<Select mode="multiple">{fillEventOptions}</Select>)}
         </Form.Item>
 
         <div className="d-flex justify-content-center mt-4">
@@ -88,4 +116,4 @@ export class EditForm extends Component<IEditEventFormProps, {}> {
 }
 export default Form.create({
   name: 'edit-event-form',
-})(EditForm);
+})(withRouter(EditForm));

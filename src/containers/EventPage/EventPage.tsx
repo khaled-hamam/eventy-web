@@ -26,24 +26,6 @@ export default class EventPage extends Component<IEventProps, IEventState> {
     this.state = {
       event: undefined,
     };
-    // this.state = {
-    //   event: {
-    //     name: 'EVENTYYY',
-    //     id: 1,
-    //     date: new Date(Date.now()),
-    //     type: 'ay haga',
-    //     budget: 1000,
-    //     attendeesLimit: 100,
-    //     description: 'AGMAD EVENT 3AL KAWKAB',
-    //     photosURL: [
-    //       'https://c.ndtvimg.com/2018-11/68g3f5sk_event-generic_625x300_16_November_18.jpg',
-    //       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVHcvZGUka9twFOW-F_ERHVMxl4PrWuQYB2sK0zxfV84wYVxqEbg',
-    //       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKvST-ao9SCFCXoktADGYOAnQvDQlnugRCQYGEvsKurGuBaW0-',
-    //     ],
-    //     creator: undefined,
-    //     planner: undefined,
-    //   },
-    // };
   }
   async componentDidMount() {
     const e = await this._eventService.getEvent(this.props.match.params.id);
@@ -94,7 +76,7 @@ export default class EventPage extends Component<IEventProps, IEventState> {
             </Button>
             <br />
             <Button style={{ height: '50px', width: '200px', color: 'green' }}>
-              <Link to="/EditEvent">Edit</Link>
+              <Link to={`/event/${event.id}/edit-event`}>Edit</Link>
             </Button>
           </div>
           <div className="verticalLine" />
