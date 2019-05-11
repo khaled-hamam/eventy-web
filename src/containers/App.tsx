@@ -10,6 +10,7 @@ import RegistrationPage from './Registration/RegistrationPage';
 import EditProfile from './Profile/EditProfile';
 import EventPage from './EventPage/EventPage';
 import RequestPage from './RequestPage/RequestPage';
+import PrivateRoute from '../components/PrivateRoute/PrivateRoute';
 import Navbar from '../components/Navbar/Navbar';
 import { UserService } from '../services/userServices/user.service';
 
@@ -26,7 +27,7 @@ class App extends React.Component<any, any> {
       this.setState({ user });
     });
   }
-
+  
   render() {
     return (
       <React.Fragment>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Input, Button, Icon, Checkbox } from 'antd';
+import { Form, Input, Icon } from 'antd';
 import { UserService } from '../../../services/userServices/user.service';
 import '../../Forms.css';
 import { Link, RouteComponentProps, withRouter } from 'react-router-dom';
