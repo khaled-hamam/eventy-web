@@ -1,3 +1,4 @@
+import { RouteComponentProps } from 'react-router-dom';
 import { LoginDTO } from './dto/LoginUser.dto';
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';

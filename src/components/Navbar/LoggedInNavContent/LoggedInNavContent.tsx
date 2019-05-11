@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from 'antd';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { UserService } from '../../../services/userServices/user.service';
 
 const LoggedInNavContent = (props: any) => {
@@ -12,11 +12,18 @@ const LoggedInNavContent = (props: any) => {
           {props.user.fullName}
         </Link>
       </p>
-      <Button className="eventy-btn" type="primary" onClick={() => UserService.instance.logout()}>
+      <Button
+        className="eventy-btn"
+        type="primary"
+        onClick={() => {
+          UserService.instance.logout();
+          props.history.push('/');
+        }}
+      >
         LOGOUT
       </Button>
     </div>
   );
 };
 
-export default LoggedInNavContent;
+export default withRouter(LoggedInNavContent);
