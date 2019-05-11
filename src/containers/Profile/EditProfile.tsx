@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import EditProfileForm from '../../components/EditProfileForm';
+import EditProfileForm from './components/EditProfileForm';
 
 export default class EditProfile extends Component {
   render() {

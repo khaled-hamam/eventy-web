@@ -49,7 +49,7 @@ export default class ProfilePage extends Component<IProfileProps, IProfileState>
           <div className="d-flex justify-content-between">
             <h3>{profile.fullName}</h3>
             <Button type="primary">
-              <Link to="/editProfile">Edit Profile</Link>
+              <Link to={`/profile/${profile.username}/edit`}>Edit Profile</Link>
             </Button>
           </div>
           {profile.rating !== undefined && <Rate value={profile.rating} />}
