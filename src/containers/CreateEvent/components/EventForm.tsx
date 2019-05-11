@@ -4,10 +4,10 @@ import './EventForm.css';
 import moment from 'moment';
 import { EventService } from '../../../services/eventServices/event.service';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
-import { EventOptions } from '../../../services/eventServices/dto/CreateEvent.dto';
 import { toEnumKeys } from '../../../utils/toEnumKeys';
 import FormHeader from '../../../components/FormHeader/FormHeader';
 import SubmitButton from '../../../components/SubmitButton';
+import { EventOptions } from '../../../services/eventServices/dto/CreateEvent.dto';
 
 interface ICreateEventFormProps extends RouteComponentProps<any> {
   form: any;

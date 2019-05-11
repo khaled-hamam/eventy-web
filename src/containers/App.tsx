@@ -13,6 +13,7 @@ import RequestPage from './RequestPage/RequestPage';
 import PrivateRoute from '../components/PrivateRoute/PrivateRoute';
 import Navbar from '../components/Navbar/Navbar';
 import { UserService } from '../services/userServices/user.service';
+import Page404 from './404/404Page';
 
 class App extends React.Component<any, any> {
   constructor(props: any) {
@@ -27,7 +28,7 @@ class App extends React.Component<any, any> {
       this.setState({ user });
     });
   }
-  
+
   render() {
     return (
       <React.Fragment>
@@ -45,6 +46,7 @@ class App extends React.Component<any, any> {
               <Route path="/event/:id" exact component={EventPage} />
               <Route path="/request" exact component={RequestPage} />
               <Route path="/profile/:username" exact component={ProfilePage} />
+              <Route path="/page404" exact component={Page404} />
             </React.Fragment>
           </Switch>
         </Router>
