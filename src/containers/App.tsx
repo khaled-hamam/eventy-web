@@ -23,7 +23,7 @@ class App extends React.Component {
           <Route path="/event/:id/edit-event" exact component={EditEvent} />
           <Route path="/login" exact component={LoginPage} />
           <Route path="/register" exact component={RegistrationPage} />
-          <Route path="/editProfile" exact component={EditProfile} />
+          <Route path="/profile/:username/edit" exact component={EditProfile} />
           <Route path="/register" exact component={RegistrationPage} />
           <Route path="/event/:id" exact component={EventPage} />
           <Route path="/request" exact component={RequestPage} />

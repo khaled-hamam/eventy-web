@@ -1,23 +1,38 @@
 import React, { Component } from 'react';
 import { Form, Input, Button } from 'antd';
 
-import '../containers/Forms.css';
-import { ProfileService } from '../services/profileServices/profile.service';
-import { Link } from 'react-router-dom';
-
+import { ProfileService } from '../../../services/profileServices/profile.service';
+import { Link, RouteComponentProps, withRouter } from 'react-router-dom';
+import { Profile } from '../../../dtos/Profile';
 interface IEditProfileProps {
   form?: any;
 }
+interface IEditProfileState {
+  profile?: Profile;
+}
+type MixedPropType = RouteComponentProps<{ username: string }> & RouteComponentProps<any>;
 
-class EditProfileForm extends Component<IEditProfileProps, {}> {
-  profileService = new ProfileService();
+interface IEditProfileProps extends MixedPropType {}
+
+class EditProfileForm extends Component<IEditProfileProps, IEditProfileState> {
+  private profileService: ProfileService;
+  constructor(props: any) {
+    super(props);
+    this.profileService = new ProfileService();
+    this.state = {
+      profile: undefined,
+    };
+  }
   handleSubmit = (e: any) => {
     e.preventDefault();
     const formData = this.props.form.getFieldsValue();
     console.log(formData);
     this.profileService.editProfile(formData);
   };
-
+  async componentDidMount() {
+    const p = await this.profileService.getCreatorProfile(this.props.match.params.username);
+    await this.setState({ profile: p.data });
+  }
   render() {
     const { getFieldDecorator } = this.props.form;
     const formItemLayout = {
@@ -30,26 +45,30 @@ class EditProfileForm extends Component<IEditProfileProps, {}> {
         sm: { span: 16 },
       },
     };
+    const { profile } = this.state;
+    if (!profile) {
+      return <div>Loading</div>;
+    }
     return (
       <Form {...formItemLayout} className="EditProfile-Form flex-grow-1 h-100">
         <Form.Item {...formItemLayout} label="fullName">
           {getFieldDecorator('fullName', {
-            initialValue: 'Karim Elsayed',
+            initialValue: profile.fullName,
           })(<Input />)}
         </Form.Item>
         <Form.Item label="E-mail">
           {getFieldDecorator('email', {
-            initialValue: 'Karim@gmail.com',
-          })(<Input />)}
+            initialValue: profile.email,
+          })(<Input disabled />)}
         </Form.Item>
         <Form.Item label="Mobile">
           {getFieldDecorator('mobile', {
-            initialValue: '01098214762',
+            initialValue: profile.mobile,
           })(<Input />)}
         </Form.Item>
         <Form.Item label="Picture URL">
           {getFieldDecorator('pictureURL', {
-            initialValue: 'https://img.rasset.ie/000fc0a3-500.jpg',
+            initialValue: profile.pictureURL || 'https://img.rasset.ie/000fc0a3-500.jpg',
           })(<Input />)}
         </Form.Item>
         <Form.Item className="d-flex justify-content-center align-items-center">
@@ -69,4 +88,4 @@ class EditProfileForm extends Component<IEditProfileProps, {}> {
 
 export default Form.create({
   name: 'editProfile-form',
-})(EditProfileForm);
+})(withRouter(EditProfileForm));
