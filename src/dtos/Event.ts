@@ -17,7 +17,8 @@ export interface Event {
   name: string;
   description: string;
   date: Date;
-  location: ILocation;
+  latitude: string;
+  longitude: string;
   type: string;
   budget: number;
   attendeesLimit: number;
