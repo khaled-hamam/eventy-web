@@ -38,6 +38,10 @@ export class EditForm extends Component<IEditEventFormProps, IEditEventFormState
     const formData = this.props.form.getFieldsValue();
     this.eventService.update(formData, this.props.match.params.id);
     console.log(formData);
+    formData.location = {
+      latitude: formData.location.split(',')[0],
+      longitude: formData.location.split(',')[1],
+    };
   };
   async componentDidMount() {
     const e = await this.eventService.getEvent(this.props.match.params.id);
@@ -81,7 +85,7 @@ export class EditForm extends Component<IEditEventFormProps, IEditEventFormState
 
         <Form.Item>
           {getFieldDecorator('location', {
-            initialValue: '1 2',
+            initialValue: `${event.latitude},${event.longitude}`,
           })(<Input />)}
         </Form.Item>
 
