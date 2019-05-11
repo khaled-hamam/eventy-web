@@ -9,6 +9,7 @@ import { toEnumKeys } from '../../../utils/toEnumKeys';
 import { EventOptions } from '../../../services/eventServices/dto/CreateEvent.dto';
 import { RouteComponentProps, withRouter } from 'react-router';
 import { Event } from '../../../dtos/Event';
+import { UserService } from '../../../services/userServices/user.service';
 
 interface IEditEventFormProps {
   form: any;
@@ -40,8 +41,13 @@ export class EditForm extends Component<IEditEventFormProps, IEditEventFormState
   };
   async componentDidMount() {
     const e = await this.eventService.getEvent(this.props.match.params.id);
-    await this.setState({ event: e.data });
-
+    if (UserService.instance.user.value) {
+      if (UserService.instance.user.value.username === e.data.creator.username) {
+        await this.setState({ event: e.data });
+      } else {
+        this.props.history.push('/');
+      }
+    }
     // console.log('***********', this.state.event);
   }
 

@@ -6,10 +6,15 @@ import { Event } from '../../dtos/Event';
 import { EventService } from '../../services/eventServices/event.service';
 import EventCardInfo from './components/EventCardInfo';
 import './EventPage.css';
+import { UserService } from '../../services/userServices/user.service';
+import { EventOptions } from '../../services/eventServices/dto/CreateEvent.dto';
+import { toEnumKeys } from '../../utils/toEnumKeys';
+import EditEvent from '../EditEvent/EditEvent';
 const { Meta } = Card;
 
 interface IEventState {
   event?: Event;
+  isCreator?: boolean;
 }
 
 type MixedPropType = RouteComponentProps<{ id: string }> & RouteComponentProps<any>;
@@ -25,15 +30,24 @@ export default class EventPage extends Component<IEventProps, IEventState> {
     this._eventService = new EventService();
     this.state = {
       event: undefined,
+      isCreator: undefined,
     };
   }
   async componentDidMount() {
     const e = await this._eventService.getEvent(this.props.match.params.id);
     await this.setState({ event: e.data });
-    console.log('***********', this.state.event);
+    if (UserService.instance.user.value) {
+      if (UserService.instance.user.value.username === e.data.creator.username) {
+        this.setState({ isCreator: false });
+      } else {
+        this.setState({ isCreator: true });
+      }
+    }
   }
+
   render() {
     const { event } = this.state;
+
     if (!event) {
       return <div>Loading</div>;
     }
@@ -71,16 +85,18 @@ export default class EventPage extends Component<IEventProps, IEventState> {
                 ].map(el => <img src={el} alt="Event photos" />)}
           </Carousel>
           <div>
-            <Button style={{ marginBottom: '5%', height: '50px', width: '200px', color: 'red' }}>
+            <Button
+              hidden={this.state.isCreator}
+              style={{ marginBottom: '5%', height: '50px', width: '200px', color: 'red' }}
+            >
               <Link to="/">Cancel</Link>
             </Button>
             <br />
-            <Button style={{ height: '50px', width: '200px', color: 'green' }}>
+            <Button hidden={this.state.isCreator} style={{ height: '50px', width: '200px', color: 'green' }}>
               <Link to={`/event/${event.id}/edit-event`}>Edit</Link>
             </Button>
           </div>
           <div className="verticalLine" />
-
           <div className="Cards d-flex flex-column  justify-content-around">
             <Card className=" eventCreatorCard w-30">
               <Meta
@@ -117,13 +133,12 @@ export default class EventPage extends Component<IEventProps, IEventState> {
               {event.planner && `RATING: ${event.planner.rating}`}
             </Card>
           </div>
-
           <div className="verticalLine" />
-
-          <div className="eventDescription w-70 font-weight-bold">
-            ABOUT THE EVENT:
-            <br />
-            {event.description}
+          <div className=" w-70 font-weight-bold">
+            Event Options: <br />
+            {event.eventOptions.map(key => (
+              <p>{EventOptions[key]}</p>
+            ))}
           </div>
         </div>
       </div>
