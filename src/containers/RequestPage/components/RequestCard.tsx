@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 import { Card, Button } from 'antd';
-import { Request } from '../../../dtos/Request';
-import { RequestService } from '../../../services/request.service';
-import { RouteComponentProps } from 'react-router';
 
 interface IRequestCardProps {
   title: string;
@@ -25,7 +22,7 @@ export class RequestCard extends Component<IRequestCardProps, {}> {
         className="w-50"
         title={
           <h2>
-            <a href="/event/${req.event.id}">Event Name:{`${this.props.title}`} </a>
+            <a href="/event/">Event Name:{`${this.props.title}`} </a>
           </h2>
         }
       >

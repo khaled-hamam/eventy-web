@@ -11,6 +11,7 @@ import EditProfile from './Profile/EditProfile';
 import EventPage from './EventPage/EventPage';
 import RequestPage from './RequestPage/RequestPage';
 import { NavBar } from '../components/Navbar/Navbar';
+import PrivateRoute from '../components/PrivateRoute/PrivateRoute';
 
 class App extends React.Component {
   render() {
@@ -19,14 +20,14 @@ class App extends React.Component {
         <Router>
           <NavBar />
           <Route path="/" exact component={LandingPage} />
-          <Route path="/create-event" exact component={CreateEvent} />
-          <Route path="/edit-event" exact component={EditEvent} />
+          <PrivateRoute path="/create-event" exact component={CreateEvent} />
+          <PrivateRoute path="/edit-event" exact component={EditEvent} />
           <Route path="/login" exact component={LoginPage} />
           <Route path="/register" exact component={RegistrationPage} />
-          <Route path="/editProfile" exact component={EditProfile} />
+          <PrivateRoute path="/editProfile" exact component={EditProfile} />
           <Route path="/register" exact component={RegistrationPage} />
           <Route path="/event/:id" exact component={EventPage} />
-          <Route path="/request" exact component={RequestPage} />
+          <PrivateRoute path="/request" exact component={RequestPage} />
           <Route path="/profile/:username" exact component={ProfilePage} />
         </Router>
       </React.Fragment>

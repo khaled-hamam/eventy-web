@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Form, Input, DatePicker, Checkbox, InputNumber, message } from 'antd';
+import { Form, Input, DatePicker, Checkbox, InputNumber, message } from 'antd';
 import './EventForm.css';
 import moment from 'moment';
 import { EventService } from '../../../services/eventServices/event.service';

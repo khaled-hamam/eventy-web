@@ -7,6 +7,6 @@ export interface Profile {
   mobile: string;
   pictureURL: string;
   events: Event[];
-  rating?: number;
+  rating: number;
   role: 'planner' | 'creator';
 }
