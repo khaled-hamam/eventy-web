@@ -21,6 +21,7 @@ export class Observable<T> implements IObservable<T> {
 
   subscribe(callback: IObserver<T>): void {
     this.observers.push(callback);
+    callback(this.value);
   }
   unsubscribe(callback: IObserver<T>): void {
     this.observers = this.observers.filter(observer => observer !== callback);

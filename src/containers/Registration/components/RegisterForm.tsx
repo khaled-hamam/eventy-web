@@ -68,10 +68,6 @@ class RegistrationForm extends Component<IRegistrationFormProps, {}> {
           {getFieldDecorator('username', {
             rules: [
               {
-                type: 'username',
-                message: 'The input is not valid!',
-              },
-              {
                 required: true,
                 message: 'Please input your username!',
               },

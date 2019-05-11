@@ -1,1 +1,1 @@
-export type IObserver<T> = (value: T) => void;
+export type IObserver<T> = (value: T | undefined) => void;
