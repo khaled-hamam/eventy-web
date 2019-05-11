@@ -1,0 +1,7 @@
+.login {
+  color: black;
+}
+
+.login:hover {
+  color: var(--primary-color);
+}

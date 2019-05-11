@@ -1,27 +1,33 @@
 import React, { Component } from 'react';
-import { Button, Form, Input, DatePicker, Checkbox, InputNumber, message } from 'antd';
+import { Button, Form, Input, DatePicker, Checkbox, InputNumber, message, Select } from 'antd';
 import './EventForm.css';
 import moment from 'moment';
 import { EventService } from '../../../services/eventServices/event.service';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
+import { toEnumKeys } from '../../../utils/toEnumKeys';
+import FormHeader from '../../../components/FormHeader/FormHeader';
+import SubmitButton from '../../../components/SubmitButton';
+import { EventOptions } from '../../../services/eventServices/dto/CreateEvent.dto';
 
 interface ICreateEventFormProps extends RouteComponentProps<any> {
   form: any;
 }
 
 export class CreateEventForm extends Component<ICreateEventFormProps, {}> {
-  eventService = new EventService();
+  private eventService = new EventService();
+
   submitCreate = async (e: any) => {
+    // TODO: Fix integration with Backend
+    // TODO: Integrate with Google Maps API
     e.preventDefault();
     const formData = this.props.form.getFieldsValue();
     formData.date = moment(formData.date).format('YYYY-MM-DDTHH:mm:ssZ');
+
     formData.location = {
-      latitude: '1',
-      longitude: '2',
+      latitude: formData.location.split(',')[0],
+      longitude: formData.location.split(',')[1],
     };
-    formData['eventOptions'] = [];
-    console.log(formData.eventOptions);
-    console.log(formData);
+
     const res = await this.eventService.create(formData);
     if (res !== undefined) {
       message.success('Event Created Successfully!');
@@ -29,15 +35,19 @@ export class CreateEventForm extends Component<ICreateEventFormProps, {}> {
     } else {
       message.error('An error occured.');
     }
+    //formData['eventOptions'] = [];
+    console.log(formData.eventOptions);
+    console.log(formData);
   };
-
   render() {
+    const fillEventOptions = toEnumKeys(EventOptions).map((option, index) => (
+      <Select.Option key={index}>{option}</Select.Option>
+    ));
     const { getFieldDecorator } = this.props.form;
     return (
-      <Form className="form-style">
-        <h5 className="card-header text-center" style={{ background: ' #ff4d4f' }}>
-          <strong style={{ color: 'white' }}>Create Event</strong>
-        </h5>
+      <Form className="form-style d-flex flex-column justify-content-center">
+        <FormHeader>Create Event</FormHeader>
+
         <Form.Item className="d-flex pt-4">
           {getFieldDecorator('name', {
             rules: [{ required: true, message: 'Please Enter Event Name' }],
@@ -85,28 +95,12 @@ export class CreateEventForm extends Component<ICreateEventFormProps, {}> {
           </div>
         </Form.Item>
 
-        <Form.Item>
-          <div className="d-flex justify-content align-items flex-column">
-            {getFieldDecorator('eventOptions', {
-              rules: [{ required: false }],
-            })(
-              <div>
-                <p>Event Option</p>
-                <div className="d-flex flex-row">
-                  <Checkbox>DJ</Checkbox>
-                  <Checkbox>Decoration</Checkbox>
-                  <Checkbox>Photographer</Checkbox>
-                  <Checkbox>Catering</Checkbox>
-                </div>
-              </div>,
-            )}
-          </div>
+        <Form.Item label="Event Options">
+          {getFieldDecorator('eventOptions', {})(<Select mode="multiple">{fillEventOptions}</Select>)}
         </Form.Item>
 
-        <div className="d-flex justify-content-center align-items-center ">
-          <Button onClick={this.submitCreate} shape="round" className="form-button" type="primary">
-            Submit
-          </Button>
+        <div className="d-flex justify-content-center mt-4">
+          <SubmitButton onSubmit={this.submitCreate} />
         </div>
       </Form>
     );

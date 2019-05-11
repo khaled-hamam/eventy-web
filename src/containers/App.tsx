@@ -10,15 +10,17 @@ import RegistrationPage from './Registration/RegistrationPage';
 import EditProfile from './Profile/EditProfile';
 import EventPage from './EventPage/EventPage';
 import RequestPage from './RequestPage/RequestPage';
+import { NavBar } from '../components/Navbar/Navbar';
 
 class App extends React.Component {
   render() {
     return (
       <React.Fragment>
         <Router>
+          <NavBar />
           <Route path="/" exact component={LandingPage} />
-          <Route path="/CreateEvent" exact component={CreateEvent} />
-          <Route path="/EditEvent" exact component={EditEvent} />
+          <Route path="/create-event" exact component={CreateEvent} />
+          <Route path="/event/:id/edit-event" exact component={EditEvent} />
           <Route path="/login" exact component={LoginPage} />
           <Route path="/register" exact component={RegistrationPage} />
           <Route path="/editProfile" exact component={EditProfile} />

@@ -1,7 +1,9 @@
 @import '~antd/dist/antd.css';
-.logo {
-  font-family: 'Pacifico', sans-serif;
+
+:root {
+  --primary-color: #ff4d4f;
 }
+
 body {
   margin: 0;
   padding: 0;
@@ -30,6 +32,18 @@ code {
 .lh-0 {
   line-height: 0pt;
 }
+
 .ant-form-item {
   margin-bottom: 6pt;
+}
+
+.eventy-btn {
+  background-color: var(--primary-color);
+  border: none;
+  color: white;
+}
+
+.eventy-btn:hover {
+  background-color: white;
+  color: var(--primary-color);
 }

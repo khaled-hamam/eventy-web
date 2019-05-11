@@ -17,7 +17,7 @@ export class EventService {
     }
   }
 
-  public async update(editEventDTO: EditEventDTO) {
-    await axios.put('/events/:id', editEventDTO);
+  public async update(editEventDTO: EditEventDTO, id: number) {
+    await axios.put(`/events/${id}`, editEventDTO);
   }
 }
