@@ -5,6 +5,7 @@ import ProfileDetail from './components/ProfileDetail';
 import { Link, RouteComponentProps } from 'react-router-dom';
 import './ProfilePage.css';
 import { ProfileService } from '../../services/profileServices/profile.service';
+import { UserService } from '../../services/userServices/user.service';
 
 type MixedPropType = RouteComponentProps<{ username: string }> & RouteComponentProps<any>;
 
@@ -15,6 +16,7 @@ interface IProfileState {
 interface IProfileProps extends MixedPropType {}
 
 export default class ProfilePage extends Component<IProfileProps, IProfileState> {
+  isProfile: boolean;
   private profileService: ProfileService;
 
   constructor(props: IProfileProps) {
@@ -36,6 +38,8 @@ export default class ProfilePage extends Component<IProfileProps, IProfileState>
     if (!profile) {
       return <div>Loading...</div>;
     }
+    if (UserService.instance.user.value)
+      this.isProfile = UserService.instance.user.value.username === profile.username;
     return (
       <div className="d-flex justify-content-center px-5 h-100">
         <div className="d-flex flex-basis-20 flex-column h-100">
@@ -48,7 +52,7 @@ export default class ProfilePage extends Component<IProfileProps, IProfileState>
         <div className="d-flex flex-basis-80 bg-light p-5 flex-column">
           <div className="d-flex justify-content-between">
             <h3>{profile.fullName}</h3>
-            <Button type="primary">
+            <Button hidden={!this.isProfile} type="primary">
               <Link to={`/profile/${profile.username}/edit`}>Edit Profile</Link>
             </Button>
           </div>

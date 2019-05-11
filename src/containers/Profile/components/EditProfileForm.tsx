@@ -4,6 +4,7 @@ import { Form, Input, Button } from 'antd';
 import { ProfileService } from '../../../services/profileServices/profile.service';
 import { Link, RouteComponentProps, withRouter } from 'react-router-dom';
 import { Profile } from '../../../dtos/Profile';
+import { UserService } from '../../../services/userServices/user.service';
 interface IEditProfileProps {
   form?: any;
 }
@@ -32,7 +33,10 @@ class EditProfileForm extends Component<IEditProfileProps, IEditProfileState> {
   async componentDidMount() {
     const p = await this.profileService.getCreatorProfile(this.props.match.params.username);
     await this.setState({ profile: p.data });
+    if (UserService.instance.user.value)
+      if (UserService.instance.user.value.username !== p.data.username) this.props.history.push('/');
   }
+
   render() {
     const { getFieldDecorator } = this.props.form;
     const formItemLayout = {
