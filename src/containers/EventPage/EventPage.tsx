@@ -136,9 +136,7 @@ export default class EventPage extends Component<IEventProps, IEventState> {
           <div className="verticalLine" />
           <div className=" w-70 font-weight-bold">
             Event Options: <br />
-            {event.eventOptions.map(key => (
-              <p>{EventOptions[key]}</p>
-            ))}
+            {event.eventOptions && event.eventOptions.map(key => <p>{EventOptions[key]}</p>)}
           </div>
         </div>
       </div>
