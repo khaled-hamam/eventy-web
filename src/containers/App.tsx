@@ -39,12 +39,12 @@ class App extends React.Component<any, any> {
             <React.Fragment>
               <Navbar user={this.state.user} />
               <Route path="/" exact component={LandingPage} />
-              <Route path="/create-event" exact component={CreateEvent} />
-              <Route path="/edit-event" exact component={EditEvent} />
-              <Route path="/editProfile" exact component={EditProfile} />
+              <PrivateRoute path="/create-event" exact component={CreateEvent} />
+              <PrivateRoute path="/edit-event" exact component={EditEvent} />
+              <PrivateRoute path="/editProfile" exact component={EditProfile} />
               <Route path="/register" exact component={RegistrationPage} />
               <Route path="/event/:id" exact component={EventPage} />
-              <Route path="/request" exact component={RequestPage} />
+              <PrivateRoute path="/request" exact component={RequestPage} />
               <Route path="/profile/:username" exact component={ProfilePage} />
               <Route path="/page404" exact component={Page404} />
             </React.Fragment>
