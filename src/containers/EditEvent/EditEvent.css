@@ -1,0 +1,28 @@
+.position {
+  padding-top: 1%;
+  padding-bottom: 6%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  background-color: white;
+  height: 100%;
+}
+.header {
+  color: black;
+}
+.header-position {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  height: 100%;
+  padding-top: 1%;
+  margin: 0%;
+}
+.backgroundColor {
+  background-color: white;
+}
+
+html,
+body {
+  overflow: visible;
+}
